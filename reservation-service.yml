@@ -49,12 +49,10 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${random.value}
 
-swagger:
-  server:
-    url: http://localhost:${eureka.instance.instance-id}
 springdoc:
   api-docs:
     enabled: true
+    path: /api-docs
   swagger-ui:
     csrf:
       enabled: true
