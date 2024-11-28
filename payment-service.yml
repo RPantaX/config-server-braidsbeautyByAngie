@@ -50,8 +50,8 @@ eureka:
 springdoc:
   api-docs:
     enabled: true
-    path: /v1/payment-service/payment/v3/api-docs
+    path: /v1/payment-service/v3/api-docs
   swagger-ui:
     csrf:
       enabled: true
-    path: /v1/payment-service/payment/swagger-ui.html
+    path: /v1/payment-service/swagger-ui.html
