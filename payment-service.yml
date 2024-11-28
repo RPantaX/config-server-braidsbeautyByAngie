@@ -50,6 +50,7 @@ eureka:
 springdoc:
   api-docs:
     enabled: true
+    path: /api-docs
   swagger-ui:
     csrf:
       enabled: true
