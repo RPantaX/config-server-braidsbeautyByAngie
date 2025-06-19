@@ -6,11 +6,11 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_products?useSSL=false
+    url: jdbc:postgresql://postgres-products:5432/db_products
     username: fazt
     password: 123456
   kafka:
-    bootstrap-servers: localhost:9092,localhost:9094,localhost:9096
+    bootstrap-servers: kafka-1:9192,kafka-2:9192,kafka-3:9192
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -33,12 +33,28 @@ spring:
       auto-create: false
 
 server:
-  port: 0
+  port: 8080
 
 eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-service:8761/eureka
   instance:
-    instance-id: ${spring.application.name}:${random.value}
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
 
+# Health and monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+  tracing:
+    sampling:
+      probability: 1.0
 
 springdoc:
   api-docs:
