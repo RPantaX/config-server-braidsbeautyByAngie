@@ -16,7 +16,7 @@ spring:
     username: root
     password: 123456
   kafka:
-    bootstrap-servers: kafka-1:9192,kafka-2:9192,kafka-3:9192
+    bootstrap-servers: kafka-1:9090,kafka-2:9090,kafka-3:9090
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
@@ -34,7 +34,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: 'com.braidsbeautybyangie.*'
-        allow.auto.create.topics: false
+        allow.auto.create.topics: true #en produccion se debe poner en false
     admin:
       auto-create: false
 
