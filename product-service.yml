@@ -28,7 +28,7 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: 'com.braidsbeautybyangie.*'
-        allow.auto.create.topics: false
+        allow.auto.create.topics: true
     admin:
       auto-create: false
 
