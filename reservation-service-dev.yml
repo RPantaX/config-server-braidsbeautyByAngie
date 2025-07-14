@@ -1,0 +1,74 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: reservation-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    properties:
+      hibernate.format_sql: true
+  datasource:
+    url: jdbc:mysql://localhost:3307/db_reservation
+    username: root
+    password: 123456
+  kafka:
+    bootstrap-servers: kafka-1:9090,kafka-2:9090,kafka-3:9090
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: all
+      properties:
+        delivery.timeout.ms: 120000
+        linger.ms: 0
+        request.timeout.ms: 30000
+        max.in.flight.requests.per.connection: 5
+        enable.idempotence: true
+        allow.auto.create.topics: false
+    consumer:
+      group-id: services-ms-angieBraids
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: 'com.braidsbeautybyangie.*'
+        allow.auto.create.topics: true #en produccion se debe poner en false
+    admin:
+      auto-create: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.application.name}:${spring.cloud.client.hostname}:${server.port}
+
+# Health and monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+services:
+  events:
+    topic:
+      name: services-events
+  commands:
+    topic:
+      name: services-commands
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    csrf:
+      enabled: true
+    path: /swagger-ui.html
