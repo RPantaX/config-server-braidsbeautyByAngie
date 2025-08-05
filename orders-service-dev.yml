@@ -110,17 +110,17 @@ resilience4j:
         base-config: default
       reservation-service:
         base-config: default
-  #timelimiter:
-  #  instances:
-  #    payment-service:
-  #      timeout-duration: 6s #Tiempo maximo de espera para la respuesta de la peticion
-  #      cancel-running-future: true #Cancela la peticion si se excede el tiempo de espera
-  #    product-service:
-  #      timeout-duration: 6s
-  #      cancel-running-future: true
-  #    reservation-service:
-  #      timeout-duration: 6s
-  #      cancel-running-future: true
+  timelimiter:
+    instances:
+      payment-service:
+        timeout-duration: 6s #Tiempo maximo de espera para la respuesta de la peticion
+        cancel-running-future: true #Cancela la peticion si se excede el tiempo de espera
+      product-service:
+        timeout-duration: 6s
+        cancel-running-future: true
+      reservation-service:
+        timeout-duration: 6s
+        cancel-running-future: true
 #  ratelimiter:
 #    configs:
 #      default:
@@ -143,4 +143,5 @@ management:
   tracing:
     sampling:
       probability: 1.0
+
 
