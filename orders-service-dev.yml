@@ -144,13 +144,3 @@ management:
     sampling:
       probability: 1.0
 
-springdoc:
-  api-docs:
-    enabled: true
-    path: /api-docs
-  swagger-ui:
-    csrf:
-      enabled: true
-    path: /swagger-ui.html
-
-
