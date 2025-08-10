@@ -51,10 +51,30 @@ management:
   endpoints:
     web:
       exposure:
-        include: '*'
+        include: "*"
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
   endpoint:
     health:
       show-details: always
+  metrics:
+    distribution:
+      percentiles-histogram:
+        http.server:
+          requests: true
+  tracing:
+    sampling:
+      probability: 1.0
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+
+
+logging:
+  pattern:
+    correlation: [ "${ spring.application.name: },%X{ traceId:- },%X{ spanId:- }" ]
 
 services:
   events:
@@ -72,3 +92,4 @@ springdoc:
     csrf:
       enabled: true
     path: /swagger-ui.html
+
