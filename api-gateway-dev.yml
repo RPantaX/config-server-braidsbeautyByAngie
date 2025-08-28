@@ -109,3 +109,11 @@ springdoc:
   api-docs:
     enabled: true
     path: /v3/api-docs
+# Logging configuration
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO
+    org.springframework.web.reactive: INFO
+    com.braidsbeautybyangie: INFO
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
