@@ -68,9 +68,9 @@ management:
       export:
         enabled: true
         
-logging:
-  pattern:
-    correlation: [ "${ spring.application.name: },%X{ traceId:- },%X{ spanId:- }" ]
+#logging:
+#  pattern:
+#    correlation: [ "${ spring.application.name: },%X{ traceId:- },%X{ spanId:- }" ]
 
 springdoc:
   api-docs:
@@ -88,4 +88,5 @@ products:
   events:
     topic:
       name: products-events
+
 
